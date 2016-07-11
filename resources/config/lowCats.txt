@@ -1,0 +1,13 @@
+other/--/--/--/--
+preposition/--/--/--/--
+verb/--/--/--/--
+noun/--/--/--/--
+particle/--/--/--/--
+adverb/--/--/--/--
+pronoun/--/--/--/--
+conjunction/--/--/--/--
+numeral/--/--/--/--
+punctuation/--/--/--/--
+article/--/--/--/--
+adjective/--/--/--/--
+null
