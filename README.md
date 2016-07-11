@@ -49,15 +49,15 @@ A word tagging project created during my master thesis. In this project various 
 		…
 		eof
  3.	Embedding file. In this file we have a word-double valued vector Pair. The token is always first and then follow the double values of the vector. Default Delimeter is space:” ”. Each pair is separated by new line. Example:
-	'''	word1 1.0 2.0 3.0 4.0 5.0
+	```	word1 1.0 2.0 3.0 4.0 5.0
 		word2 2.0 3.0 4.0 5.0 6.0
 		…
-		eof'''
+		eof```
  4.	Gazzete’s or dictionaries with words that contain Category-Word spairs can be used to classify directly known words/tokens. Pairs are separated with each other by the use of new line. In this case the word-category separator is always space. Example:
-	'''	word1 cat1
+	```	word1 cat1
 		word2 cat2
 		…
-		eof'''
+		eof```
  5.	Special Categories and words. The Pair: 
 	%newarticle% null
         is used  to separate word sequences with each other. This means that Sequence classifiers (such as CRF and LSTM) as well as the Feature Builder will stop looking before and after a pair is used. SO AVOID USING null AS A CATEGORY and %newarticle% as a word/token. 
