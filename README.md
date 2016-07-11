@@ -9,33 +9,31 @@ A word tagging project created during my master thesis. In this project various 
  4.   Nvidia GPU with 4+GB RAM and a lot of Cuda cores if you are planning to use large sets and deeplearning4j
 
 ## Required Knowledge
-	1.   Very Good knowledge of Java (8)
-	2.   Average knowledge of Unix or Windows bash
-	3.   Basic Knowledge of maven and packaging
-	4.   If you plan to mess around with native code, 
-	     good knowledge of C, C++ and or Cuda.
+ 1.   Very Good knowledge of Java (8)
+ 2.   Average knowledge of Unix or Windows bash
+ 3.   Basic Knowledge of maven and packaging
+ 4.   If you plan to mess around with native code, good knowledge of C, C++ and or Cuda.
 
 ## Things to Improve
-	1.   Create Console interaction
-	2.   Create GUI
-	3.   Use later version of Deeplearning4j and utilize,
-	     especially the Computation Graph
-	4.   Move JNN or replicate the LSTMs of wling/jnn project inside this project
-	5.   Create Tokenizers
-	6.   Search for memory leaks
+ 1.   Create Console interaction
+ 2.   Create GUI
+ 3.   Use later version of Deeplearning4j and utilize, especially the Computation Graph
+ 4.   Move JNN or replicate the LSTMs of wling/jnn project inside this project
+ 5.   Create Tokenizers
+ 6.   Search for memory leaks
 
 ## How to install
-	1.	Install Maven on your system
-	2.	Install DeepLearning4j (at time of writing Snapshot-3.9). 
-	3.	Have some training data in the CONLL format.
-	4.	Have some test data in the CONLL format.
-	5.	If you want to classify new data just use them in CONLL format
-	6.	SVMs work only for windows, If you need them for Unix either wrap Stanford’s SVMFactory Class like I did or contact me.
+ 1.	Install Maven on your system
+ 2.	Install DeepLearning4j (at time of writing Snapshot-3.9). 
+ 3.	Have some training data in the CONLL format.
+ 4.	Have some test data in the CONLL format.
+ 5.	If you want to classify new data just use them in CONLL format
+ 6.	SVMs work only for windows, If you need them for Unix either wrap Stanford’s SVMFactory Class like I did or maybe use another package.
 
 ## How to use programmatically
-	1.	Create a new Class with a main
-	2.	Create a new ExperiementSetup.Builder and build it after setting the appropriate variables for the experiement.
-	3.	Use the Javadoc
+ 1.	Create a new Class with a main
+ 2.	Create a new ExperiementSetup.Builder and build it after setting the appropriate variables for the experiement.
+ 3.	Use the Javadoc
 
 ## System Inputs
 	1.	All the possible Categories, provided in a file, separated with new line (\n). Example: 
