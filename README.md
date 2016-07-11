@@ -23,44 +23,44 @@ A word tagging project created during my master thesis. In this project various 
  6.   Search for memory leaks
 
 ## How to install
- 1.	Install Maven on your system
- 2.	Install DeepLearning4j (at time of writing Snapshot-3.9). 
- 3.	Have some training data in the CONLL format.
- 4.	Have some test data in the CONLL format.
- 5.	If you want to classify new data just use them in CONLL format
- 6.	SVMs work only for windows, If you need them for Unix either wrap Stanford’s SVMFactory Class like I did or maybe use another package.
+ 1.   Install Maven on your system
+ 2.   Install DeepLearning4j (at time of writing Snapshot-3.9). 
+ 3.   Have some training data in the CONLL format.
+ 4.   Have some test data in the CONLL format.
+ 5.   If you want to classify new data just use them in CONLL format
+ 6.   SVMs work only for Windows, If you need them for Unix either wrap Stanford’s SVMFactory Class like I did or maybe use another package.
 
 ## How to use programmatically
- 1.	Create a new Class with a main
- 2.	Create a new ExperiementSetup.Builder and build it after setting the appropriate variables for the experiement.
- 3.	Use the Javadoc
+ 1.   Create a new Class with a main
+ 2.   Create a new ExperiementSetup.Builder and build it after setting the appropriate variables for the experiement.
+ 3.   Use the Javadoc
 
 ## System Inputs
- 1.	All the possible Categories, provided in a file, separated with new line (\n). Example: 
+ 1.  All the possible Categories, provided in a file, separated with new line (\n). Example: 
   Category1
   Category2
   Category3
   …
   eof (end of file)
- 2.	Word-Category files as wordsets (trainset, testset etc). Each word-category pair is in the same line separated with any preferred delimeter (space and tab are recommended). You have to set the delimeter in code else the space is used. Each Pair is separated via newline \n. Example:
-		word1 Category1
-		word2 Category3
-		word3 Category1
-		…
-		eof
- 3.	Embedding file. In this file we have a word-double valued vector Pair. The token is always first and then follow the double values of the vector. Default Delimeter is space:” ”. Each pair is separated by new line. Example:
-   ```word1 1.0 2.0 3.0 4.0 5.0
+ 2.   Word-Category files as wordsets (trainset, testset etc). Each word-category pair is in the same line separated with any preferred delimeter (space and tab are recommended). You have to set the delimeter in code else the space is used. Each Pair is separated via newline \n. Example:
+  word1 Category1
+  word2 Category3
+  word3 Category1
+  …
+  eof
+ 3.   Embedding file. In this file we have a word-double valued vector Pair. The token is always first and then follow the double values of the vector. Default Delimeter is space:” ”. Each pair is separated by new line. Example:
+  word1 1.0 2.0 3.0 4.0 5.0
   word2 2.0 3.0 4.0 5.0 6.0
   …
-  eof```
- 4.	Gazzete’s or dictionaries with words that contain Category-Word spairs can be used to classify directly known words/tokens. Pairs are separated with each other by the use of new line. In this case the word-category separator is always space. Example:
-	```	word1 cat1
-		word2 cat2
-		…
-		eof```
- 5.	Special Categories and words. The Pair: 
-	%newarticle% null
-        is used  to separate word sequences with each other. This means that Sequence classifiers (such as CRF and LSTM) as well as the Feature Builder will stop looking before and after a pair is used. SO AVOID USING null AS A CATEGORY and %newarticle% as a word/token. 
+  eof
+ 4.   Gazzete’s or dictionaries with words that contain Category-Word spairs can be used to classify directly known words/tokens. Pairs are separated with each other by the use of new line. In this case the word-category separator is always space. Example:
+  word1 cat1
+  word2 cat2
+  …
+  eof
+ 5   Special Categories and words. The Pair: 
+     %newarticle% null
+  is used  to separate word sequences with each other. This means that Sequence classifiers (such as CRF and LSTM) as well as the Feature Builder will stop looking before and after a pair is used. SO AVOID USING null AS A CATEGORY and %newarticle% as a word/token. 
 
 ## Evaluation & Metatagging
    After a classifier provides a classified wordset, it can be evaluated against the original. This happens through the evaluation class. Also a metatagger with programmed rules is provided. See the code and the Javadoc for more information, since those 2 classes are depended on wat you plan to do and you should change/reimplement them if needed. 
