@@ -13,7 +13,7 @@ A word tagging project created during my master thesis.
 	3.	Basic Knowledge of maven and packaging
 	4.	If you plan to mess around with native code, good knowledge of C, C++ and or Cuda.
 
-Things to Improve
+## Things to Improve
 	1.	Create Console interaction
 	2.	Create GUI
 	3.	Use later version of Deeplearning4j and utilize especially the Computation Graph
@@ -21,7 +21,7 @@ Things to Improve
 	5.	Create Tokenizers
 	6.	Search for memory leaks
 
-How to install
+## How to install
 	1.	Install Maven on your system
 	2.	Install DeepLearning4j (at time of writing Snapshot-3.9). 
 	3.	Have some training data in the CONLL format.
@@ -29,12 +29,12 @@ How to install
 	5.	If you want to classify new data just use them in CONLL format
 	6.	SVMs work only for windows, If you need them for Unix either wrap Stanford’s SVMFactory Class like I did or contact me.
 
-How to use programmatically
+## How to use programmatically
 	1.	Create a new Class with a main
 	2.	Create a new ExperiementSetup.Builder and build it after setting the appropriate variables for the experiement.
 	3.	Use the Javadoc
 
-System Inputs
+## System Inputs
 	1.	All the possible Categories, provided in a file, separated with new line (\n). Example: 
 		Category1
 		Category2
@@ -63,7 +63,7 @@ System Inputs
 		Evaluation & Metatagging
 		After a classifier provides a classified wordset, it can be evaluated against the original. This happens through the evaluation class. Also a metatagger with programmed rules is provided. See the code and the Javadoc for more information, since those 2 classes are depended on wat you plan to do and you should change/reimplement them if needed. 
 
-DeepNets
+## DeepNets
 	For evaluation several deep learning packages have been used. The LSTM in the Thesis text belongs to Wang Ling. I have made some changes in its code but due to incompatibility with current dl4j libraries I ve decided to keep as a separate project. You can ask me for the code at asikis.thomas@gmail.com.
 
 	For the implementation of other deep nets, currently the computation graph of dl4j is used. See more about it here: http://deeplearning4j.org/compgraph
