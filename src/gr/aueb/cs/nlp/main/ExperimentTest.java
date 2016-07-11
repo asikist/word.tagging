@@ -58,7 +58,7 @@ public class ExperimentTest {
 		
 		
 		//qnStatFeatsTrainBig(Resources.TRAIN_COMB_HIGH, Resources.TEST_TH_HIGH, "high_cats_stat_new.csv", 32);
-		qnStatEmbTrainBig(Resources.TRAIN_HIGH, Resources.TEST_HIGH, Resources.EMBEDDINGS, "high_cats_embeddings.csv", 16);
+		//sqnStatEmbTrainBig(Resources.TRAIN_HIGH, Resources.TEST_HIGH, Resources.EMBEDDINGS, "high_cats_embeddings.csv", 16);
 
 		//new
 		
@@ -71,7 +71,7 @@ public class ExperimentTest {
 		// System.gc();
 		// crfStatFeatsTrainBig();
 		// walkFiles("C:/Users/Thomas/Desktop/emb2");
-		// dmlpStatFeatsTrainSmall();
+		 dmlpStatFeatsTrainSmall();
 		// lstmStatFeatsTrainSmall();
 		// votingSmallStatistical();
 		// qnStatEmbTrainBig("resources/data/vecs/wikipedia/v_300","");

@@ -35,13 +35,6 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<!-- In case you want to develop with bleeding <repository> <id>snapshots-repo</id> 
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url> <releases> 
-			<enabled>false</enabled> </releases> <snapshots> <enabled>true</enabled> 
-			</snapshots> </repository> -->
-	</repositories>
-
 	<dependencyManagement>
 		<dependencies>
 			<!-- Using snapshots of dl4j & nd4j for Computation Graph class usage, 

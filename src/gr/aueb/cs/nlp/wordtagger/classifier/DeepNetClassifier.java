@@ -30,17 +30,16 @@ public class DeepNetClassifier implements Classifier, Serializable {
 	private ComputationGraph net;
 	private Model model;
 	private int epochs;
+	String modelPath = "resources/data/dmlp.ser";
+			
 
 	private static Logger log = Logger.getAnonymousLogger();
 	private static Level lv = Level.INFO;
 
-	public static Model generateModel() {
-		String path = "resources/config/lowCats.txt";
-		// String train = "data/train/train-reducedCats.txt";
-		String train = "resources/data/train/train_low_23675_edited_new.train";
-		Model vc = new Model(path, 3);
-		vc.generateStats(train);
-		// vc.print();
+	public static Model generateModel(String catsPath, String trainPath) {
+
+		Model vc = new Model(catsPath, 3);
+		vc.generateStats(trainPath);
 		return vc;
 	}
 
@@ -124,7 +123,8 @@ public class DeepNetClassifier implements Classifier, Serializable {
 			if(score < best){
 				best = score;
 				try {
-					FileHelper.serialize(this, "C:/Users/Thomas/Desktop/lstm-ser2.ser");
+					log.log(Level.INFO, "Now saving Model to " + modelPath);
+					FileHelper.serialize(this, modelPath);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
