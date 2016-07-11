@@ -1,13 +1,13 @@
 # word.tagging
 A word tagging project created during my master thesis. 
 
-Prerequisites
+## Prerequisites
   1.	Unix or Windows Computer and admin rights to it
 	2.	Java 8+
 	3.	>8GB memory else you have to tweak the code to be stream based, which I don’t recommend, since it may be much much more slower
 	4.	Nvidia GPU with 4+GB RAM and a lot of Cuda cores if you are planning to use large sets and deeplearning4j
 
-Required Knowledge
+## Required Knowledge
 	1.	Very Good knowledge of Java (8)
 	2.	Average knowledge of Unix or Windows bash
 	3.	Basic Knowledge of maven and packaging
@@ -71,6 +71,6 @@ DeepNets
 	SVMs
 		Have only been implemented for Windows 64 bit by wrapping the Windows Factory of Stanford CoreNLP and providing the appropriate binaries. For other distributions you might have to do it yourself.
 	Data
-		For now I am providing some small data files in Greek. Since the size of the experimental data is more than 500MB zipped, email me on asikis.thomas@gmail.com. and I will provide you with a download link.
+		For now I am providing some small data files in Greek, just for testing purposes. Since the size of the experimental data is more than 500MB zipped, email me on asikis.thomas@gmail.com. and I will provide you with a download link.
 
 
