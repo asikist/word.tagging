@@ -2,7 +2,7 @@
 A word tagging project created during my master thesis. 
 
 ## Prerequisites
-  1.	Unix or Windows Computer and admin rights to it
+	1.	Unix or Windows Computer and admin rights to it
 	2.	Java 8+
 	3.	>8GB memory else you have to tweak the code to be stream based, which I don’t recommend, since it may be much much more slower
 	4.	Nvidia GPU with 4+GB RAM and a lot of Cuda cores if you are planning to use large sets and deeplearning4j
