@@ -37,11 +37,11 @@ A word tagging project created during my master thesis. In this project various 
 
 ## System Inputs
  1.  All the possible Categories, provided in a file, separated with new line (\n). Example:  
-  Category1  
-  Category2  
-  Category3  
-  …  
-  eof (end of file)
+  *Category1*  
+  *Category2*  
+  *Category3*  
+  *…*  
+  *eof (end of file)*
  2.   Word-Category files as wordsets (trainset, testset etc). Each word-category pair is in the same line separated with any preferred delimeter (space and tab are recommended). You have to set the delimeter in code else the space is used. Each Pair is separated via newline \n. Example:  
   word1 Category1  
   word2 Category3  
