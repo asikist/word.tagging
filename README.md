@@ -1,5 +1,6 @@
 # word.tagging
-A word tagging project created during my master thesis. 
+A word tagging project created during my master thesis. In this project various machine learning are being tested and compared in order to check their accuracy when performing part of speech tagging on greek words 
+. Nevertheless the code was developed in such a way, that it allows 1-of-a-K classification of words regardless of language. This means that you can use this software for other tasks of this type, such as Named Entity Recognition.
 
 ## Prerequisites
 	1.	Unix or Windows Computer and admin rights to it
