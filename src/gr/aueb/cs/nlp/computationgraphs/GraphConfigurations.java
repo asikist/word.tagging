@@ -11,6 +11,7 @@ import org.deeplearning4j.nn.conf.layers.GravesLSTM;
 import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.conf.layers.RnnOutputLayer;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
+import org.nd4j.linalg.activations.Activation;
 
 import gr.aueb.cs.nlp.wordtagger.data.structure.Word;
 
@@ -49,13 +50,13 @@ public class GraphConfigurations {
 		ComputationGraphConfiguration conf = new NeuralNetConfiguration.Builder()
 		        .learningRate(0.01)
 		        .regularization(true) //else it won't use regularizers
-		        .graphBuilder()
+		        .graphBuilder() 
 		        .addInputs("input") //can use any label for this, it is just an identifier for the graph.
-		        .addLayer("L1", new DenseLayer.Builder()
+		        .addLayer("L1", new DenseLayer.Builder() 
 		        		.nIn(inputFeatures) // always current nIn = Sum(nOut) of layer inputs
 		        		.nOut(300)	//you have as many neurons as your outputs...
 		        		.biasLearningRate(0.2) //faster changing bias int he first layer then slower
-		        		.activation(ActivationFunction.relu.name()) // the enumerations are made by me, 
+		        		.activation(Activation.RELU) // the enumerations are made by me, 
 		        													//to help me know which activations are available,
 		        													//for me relu work so often but they need more neurons per layer than others
 		        		.l1(0.3) //l1 regularization
@@ -72,7 +73,7 @@ public class GraphConfigurations {
 		        		.biasLearningRate(0.02)
 		        		.l1(0.3)
 		        		.l2(0.02)
-		        		.activation(ActivationFunction.relu.name()) 
+		        		.activation(Activation.RELU) 
 		        		.dropOut(0.3)
 		        		.updater(Updater.ADAM)//how to use ADAM, read the ADAM paper 
 		        							  //to understand better what they do https://arxiv.org/pdf/1412.6980.pdf
@@ -84,7 +85,7 @@ public class GraphConfigurations {
 		        		.nIn(250) // an autoencoder for some feature extraction
 		        		.nOut(300)
 		        		.biasLearningRate(0.02)
-		        		.activation(ActivationFunction.relu.name()) 
+		        		.activation(Activation.RELU) 
 		        		.l1(0.1)
 		        		.l2(0.1)
 		        		.dropOut(0.3)
@@ -95,7 +96,7 @@ public class GraphConfigurations {
 		        		.biasLearningRate(0.03)
 		        		.l1(0.1)
 		        		.l2(0.1)
-		        		.activation(ActivationFunction.relu.name()) 
+		        		.activation(Activation.RELU) 
 		        		.dropOut(0.3)
 		        		.build(), "L3")
 		        .addLayer("L5",new OutputLayer.Builder()
@@ -104,7 +105,7 @@ public class GraphConfigurations {
 		        		.lossFunction(LossFunction.MCXENT)	//categorical cross entropy, when building the output layer be very careful
 		        											//about pairing the right loss function with the appropriate activation
 		        											//e.g. why can't sigmoid work with hinge loss? cause [0,1] != [-1,1]
-		        		.activation(ActivationFunction.softmax.name()) //softmax goes with categorical corss entropy
+		        		.activation(Activation.SOFTMAX) //softmax goes with categorical corss entropy
 		        		.build(),  "L4")
 		        .setOutputs("L5")	//We need to specify the network outputs and their order
 		        .build();
@@ -133,7 +134,7 @@ public class GraphConfigurations {
 		        		.nIn(inputFeatures) // always current nIn = Sum(nOut) of layer inputs
 		        		.nOut(150)	//you have as many neurons as your outputs...
 		        		.biasLearningRate(0.2) //faster changing bias int he first layer then slower
-		        		.activation(ActivationFunction.tanh.name()) // the enumerations are made by me, 
+		        		.activation(Activation.TANH) // the enumerations are made by me, 
 		        													//to help me know which activations are available,
 		        													//for me relu work so often but they need more neurons per layer than others
 		        		.l1(0.3) //l1 regularization
@@ -150,7 +151,7 @@ public class GraphConfigurations {
 		        		.biasLearningRate(0.02)
 		        		.l1(0.3)
 		        		.l2(0.02)
-		        		.activation(ActivationFunction.relu.name()) 
+		        		.activation(Activation.RELU) 
 		        		.dropOut(0.3)
 		        		.updater(Updater.ADAM)//how to use ADAM, read the ADAM paper 
 		        							  //to understand better what they do https://arxiv.org/pdf/1412.6980.pdf

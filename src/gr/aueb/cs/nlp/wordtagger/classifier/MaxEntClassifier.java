@@ -49,7 +49,8 @@ public class MaxEntClassifier implements Classifier, Serializable {
 	 * and then stopping the algorithm, if it is smaller than tolerance.
 	 */
 	public MaxEntClassifier(boolean verbose, int maxIterations, int memStates, double tolerance){
-		LinearClassifierFactory<String, String> factory = new LinearClassifierFactory<>(tolerance);
+		LinearClassifierFactory<String, String> factory = new LinearClassifierFactory<>();
+		factory.setTol(tolerance);
 		Factory<Minimizer<DiffFunction>> minimizerCreator = customQN(verbose, maxIterations, memStates);
 		factory.setMinimizerCreator(minimizerCreator);
 		this.classifierFactory = factory;
