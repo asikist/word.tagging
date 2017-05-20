@@ -1,6 +1,7 @@
 package gr.aueb.cs.nlp.main;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -24,7 +25,10 @@ import gr.aueb.cs.nlp.wordtagger.data.structure.Model;
 import gr.aueb.cs.nlp.wordtagger.data.structure.Word;
 import gr.aueb.cs.nlp.wordtagger.data.structure.WordSet;
 import gr.aueb.cs.nlp.wordtagger.data.structure.features.FeatureBuilder;
+import gr.aueb.cs.nlp.wordtagger.data.structure.features.FeatureVector;
 import gr.aueb.cs.nlp.wordtagger.experiment.ExperimentSetup;
+import gr.aueb.cs.nlp.wordtagger.util.CallBack;
+import gr.aueb.cs.nlp.wordtagger.util.FileHelper;
 
 /**
  * 
@@ -65,13 +69,13 @@ public class ExperimentTest {
 		
 		// qnStatFeatsTrainSmall();
 		// qnStatFeatsTrainBig();
-		// crfFeatsTrainSmall();
+		crfFeatsTrainSmall();
 		// qnStatFeatsTrainBig();
 		// svmStatFeatsTrainBig();
 		// System.gc();
 		// crfStatFeatsTrainBig();
 		// walkFiles("C:/Users/Thomas/Desktop/emb2");
-		 dmlpStatFeatsTrainSmall();
+		// dmlpStatFeatsTrainSmall(); //put in comment in
 		// lstmStatFeatsTrainSmall();
 		// votingSmallStatistical();
 		// qnStatEmbTrainBig("resources/data/vecs/wikipedia/v_300","");
@@ -269,24 +273,39 @@ public class ExperimentTest {
 	}
 
 	public static void crfStatFeatsTrainBig() {
+		//...create file
+		//SongTokenizer.tokenizeToFile(S lyrics, pathTowrite);
+		
+		
 		Model model = new Model(Resources.HIGH_CATS, 3);
 		MetaTagger meta = new MetaTagger(model, Resources.HIGH_GAZZETE);
 		Evaluation eval = new Evaluation(meta, true, false);
-		ExperimentSetup exs = new ExperimentSetup.Builder().setLookAhead(0).setClassifier(new SVMClassifier())
-				.setLookBehind(0).setTotalShards(1).setClassifier(new CRFClassifier(1, 2, 10))
+		ExperimentSetup exs = new ExperimentSetup.Builder()
+				.setLookAhead(0)
+				.setClassifier(new SVMClassifier())
+				.setLookBehind(0)
+				.setTotalShards(1)
+				.setClassifier(new CRFClassifier(1, 2, 10))
 				.setCategoriesPath(Resources.HIGH_CATS)
 				.setTrainPath(Resources.TRAIN_HIGH)
 				.setTestPath(Resources.TEST_HIGH).setEval(eval).setEvalToCSV(true)
-				.setEvalLocation(Resources.EVAL_DIRECTORY + "evalCRFBIG.csv").setModel(model).build();
+				.setEvalLocation(Resources.EVAL_DIRECTORY + "evalCRFBIG.csv")
+				.setModel(model)
+				.build();
 		exs.execute();
 	}
 
 	public static void crfFeatsTrainSmall() {
-		ExperimentSetup exs = new ExperimentSetup.Builder().setClassifier(new CRFClassifier(1, 0, 15)).setTotalShards(1)
-				.setLookAhead(0).setLookBehind(0).setEvalToCSV(true).setEvalLocation("C:/Users/Thomas/Desktop/eval.csv")
+		ExperimentSetup exs = new ExperimentSetup.Builder()
+				.setClassifier(new CRFClassifier(1, 0, 15))
+				.setTotalShards(1)
+				.setTrainPath("resources/data/train/train_low")
+				.setTestPath("resources/data/train/train_low")
+				.setEvalLocation("resources/eval.csv")
 				.build();
 		exs.execute();
 
 	}
 
+	
 }
