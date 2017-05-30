@@ -32,7 +32,6 @@ public class SongReader {
 	//the following method returns a List<String> with each list element repressenting a word or a token
 	public List<String> tokenizer (String path){
 		//something that reads a file
-		path = "C:\\Users\\Alexandros\\Desktop\\Workspace\\Soft_Engine\\songtestGR";
 		StringBuilder strb = new StringBuilder();
 		
 		FileHelper.readFile(path, new CallBack<String>()  {
