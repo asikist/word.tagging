@@ -18,3 +18,7 @@ target/
 .settings
 .project
 .classpath
+
+#ignore the generated report in .csv format
+resources/
+eval.csv
