@@ -1,9 +1,12 @@
 package gr.aueb.cs.nlp.wordtagger.tokenizer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.io.FileUtils;
 
 import gr.aueb.cs.nlp.wordtagger.util.FileHelper;
 import gr.aueb.cs.nlp.wordtagger.util.CallBack;
@@ -16,6 +19,7 @@ import gr.aueb.cs.nlp.wordtagger.util.CallBack;
  *\\s = |<word>|
 */
 
+//TODO rename to SongTokenizer
 public class SongReader {
 	
 	List<String> songAnalysed = new ArrayList<String>();
@@ -24,12 +28,13 @@ public class SongReader {
 	public static void main (String [] args){
 		
 		SongReader sr = new SongReader();
-		sr.tokenizer("C:\\Users\\Alexandros\\Desktop\\Workspace\\Soft_Engine\\songtestGR");
+		sr.tokenizer(FileUtils.getUserDirectoryPath() + File.separator +"Desktop" + File.separator + "songTestGR");
 		for (String s:sr.songAnalysed)
 			System.out.println(s);
 	}//end of main
 	
 	//the following method returns a List<String> with each list element repressenting a word or a token
+	//TODO tokenize, input String text not path!
 	public List<String> tokenizer (String path){
 		//something that reads a file
 		StringBuilder strb = new StringBuilder();
@@ -41,7 +46,7 @@ public class SongReader {
 				String line = t;
 				strb.append(line).append("\n");
 			}
-		});
+		});//TODO break in 2 methods: one that reads the file and returns the String and then one that takes a string as an input and tokenizesa
 		
 		//FIRST CLEANUP
 		//here we try to clean up our input from puncuation marks (,.!"')
@@ -52,10 +57,13 @@ public class SongReader {
 		//the part that analyses the content and does the tokenizing, while creating the List<String>
 				
 		this.songAnalysed.add(strbTemp);
+		//TODO remove self empty construction and replace with static
 		SongReader sr = new SongReader();
+		
 		
 		//initial ignition, separating the strophes
 		sr.separationIgnition(songAnalysed, "(\\n\\n)", "|<new strophe>|", "backBreaker");
+		
 		//second ignition, separating the lyrics
 		sr.separationIgnition(songAnalysed, "(\\n)", "|<new lyric>|", "backBreaker");
 		//third ignition, marking a repetition start
@@ -74,6 +82,14 @@ public class SongReader {
 	}//end of tokenizer
 	
 	//takes care of the object's lists and calls listHandler
+	//TODO rename to splitSongTokens
+	/**
+	 * This method takes a list of tokens as an input and further splits it based on some regular expression patterns
+	 * @param songAnalysed input string tokens from a song
+	 * @param pattern	the dlimeteter pattern to do the splitting
+	 * @param delimit	the delimeter replacement
+	 * @param whereToBreak before or after, can be done as enumeration with javadoc for clarity
+	 */
 	public void separationIgnition(List<String> songAnalysed, String pattern, String delimit, String whereToBreak){
 		songAnalysedTemp.addAll(listHandler (songAnalysed, pattern, delimit, whereToBreak));
 		songAnalysed.clear();
@@ -82,6 +98,7 @@ public class SongReader {
 	}//end of separationIgnition
 	
 	//this reads each element of the list and identifies any delimiters that exist and calls a breaker for further tokenizing
+	//TODO processList, List may require memory on processing. A process Stream<String> can also be implemented for memory intensive tasks...
 	public List<String> listHandler (List<String> songList, String patternSet, String delimitSet, String chosenBreaker){
 
 		List<String> songListTemp = new ArrayList<String>();
@@ -108,6 +125,7 @@ public class SongReader {
 		
 	}//end of listHandler
 	
+	//TODO javadoc, rename to breakAfterString
 	//A method that used regex to break a string. Used if we need to separate it and discart the remaining part
 	public List<String> backBreaker(String input, String patternSet, String delimitSet){
 		
@@ -128,6 +146,7 @@ public class SongReader {
 		return results;	
 	}//end of backBreaker
 	
+	//TODO rename to breakBeforeString
 	//A method that used regex to break a string. Used if we need to separate it and keep the remaining part
 	public static List<String> frontBreaker(String input, String patternSet, String delimitSet){
 		
@@ -137,7 +156,7 @@ public class SongReader {
 		Pattern r = Pattern.compile(patternSet);
 		Matcher m = r.matcher(input);
 	
-		if (m.find()){
+		if (m.find()){ //TODO repetition with previous method, maybe you can replace with a boolean input and a triad Operator
 			results.add(delimitSet);
 			results.add(input.split(patternSet)[1]);		
 		}else{
