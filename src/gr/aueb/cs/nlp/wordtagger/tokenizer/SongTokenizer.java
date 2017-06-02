@@ -11,9 +11,11 @@ import org.apache.commons.io.FileUtils;
 import wordtagger.songs.SongHelper;
 /**
  * A class containing methods that perform tokenizing on a song.
+ * 
  * @author Alexandros
  * @since 5/2017
  */
+
 public class SongTokenizer implements Tokenizer {
 
 	/**
@@ -25,8 +27,8 @@ public class SongTokenizer implements Tokenizer {
 	 * different way than the others because it's the only case we need to
 	 * keep the part after the regular expression pattern. This is specified
 	 * by an enum operator.
-	 * 
 	 */
+	
 	static final String verseRegex = "(\n\n)";
 	static final String verseToken = "|<new verse>|";
 
@@ -46,21 +48,23 @@ public class SongTokenizer implements Tokenizer {
 	static List<String> songAnalysedTemp = new ArrayList<String>();
 
 	/**
-	 * The main method used to run the SongTokenizer as a standalone tool
+	 * The main method used to run the SongTokenizer as a standalone tool.
 	*/
 	public static void main(String[] args) {
 
 		SongTokenizer sr = new SongTokenizer();
-		/*This is the path set for running it on my PC,
-		obviously has to be set differently for someone else
+		/*
+		 * This is the path set for running it on my PC,
+		 * obviously has to be set differently for someone else
 		*/
 		String rawSongText = SongHelper.readSongFile(
 				FileUtils.getUserDirectoryPath()
 				+ File.separator + "Desktop"
 				+ File.separator + "Workspace"
 				+ File.separator + "Soft_Engine"
-				+ File.separator + "songTestGR");
+				+ File.separator + "lyricsTest");
 		sr.tokenize(rawSongText);
+		int i = 0;
 		for (String s:songAnalysed) {
 			System.out.println(s);
 		}
@@ -70,14 +74,15 @@ public class SongTokenizer implements Tokenizer {
 	 * This method combines the other methods and
 	 * performs cleanup processes on the content
 	 * of the song in order to perform a tokenization process to a song.
-	 * @param rawSongText	the input to tokenize. The untokenized song.
-	 * @return songAnalysed  a List<String> with each list element
-	 * 	containing either a token or a word from the song
+	 * @param rawSongText	The input to tokenize. The untokenized song.
+	 * @return songAnalysed  A List<String> with each list element
+	 * 	containing either a token or a word from the song.
 	 */
 	public List<String> tokenize(String rawSongText) {
 
-		/*FIRST CLEANUP
-		* here we clean up our input from puncuation marks (,.!"')
+		/*
+		 * FIRST CLEANUP
+		 * here we clean up our input from puncuation marks (,.!"')
 		*/
 		rawSongText = rawSongText.replaceAll("[,.!\"]", "");
 		//done separately because words may be linked by it
@@ -96,7 +101,8 @@ public class SongTokenizer implements Tokenizer {
 		//fifth tokenization, separating words
 		splitSongTokens(wordRegex, wordToken, BreakType.breakAfter);
 
-		/*SECOND CLEANUP, we remove the |<word>| token because
+		/*
+		 * SECOND CLEANUP, we remove the |<word>| token because
 		 * it comes as a collateral due to the way the tokenizing occurs
 		 */
 		songAnalysedTemp.add(wordToken);
@@ -106,7 +112,6 @@ public class SongTokenizer implements Tokenizer {
 		return songAnalysed;
 	} //end of tokenize
 
-	//takes care of the object's lists and calls listHandler
 	/**
 	 * This method takes a list of tokens as an input and further splits it
 	 * based on some regular expression patterns
@@ -130,47 +135,49 @@ public class SongTokenizer implements Tokenizer {
 	 * that exist and calls the breaker method for further tokenizing.
 	 * Calls the stringBreak by passing on a list element which will be
 	 * examined for tokenization.
-	 * @param patternSet	the defined pattern(regular expression)
-	 * based on which the tokenizing will be performed
-	 * @param delimitSet	the delimiter which will signify the string
-	 * split and the token if the pattern is found
-	 * @param chosenBreaker		the enum field defining where the string
-	 * has to be split(depending on the kind of tokenization process)
+	 * @param patternSet	The defined pattern(regular expression)
+	 * based on which the tokenizing will be performed.
+	 * @param delimitSet	The delimiter which will signify the string
+	 * split and the token if the pattern is found.
+	 * @param chosenBreaker		The enum field defining where the string
+	 * has to be split(depending on the kind of tokenization process).
 	 */
 	private static void processList(String patternSet, String delimitSet, BreakType chosenBreaker) {
 
 		for (String element : songAnalysed) {
 			switch (element) {
-				case verseToken				:	songAnalysedTemp.add(verseToken);
-												break;
-				case lyricToken				:	songAnalysedTemp.add(lyricToken);
-					 						 	break;
-				case repetitionStartToken	:	songAnalysedTemp.add(repetitionStartToken);
-											 	break;
-				case repetitionEndToken 	:	songAnalysedTemp.add(repetitionEndToken);
-											 	break;
-				case wordToken				:	songAnalysedTemp.add(wordToken);
-												break;
-				default						: 	songAnalysedTemp.addAll(stringBreak(element, patternSet,
-																		delimitSet, chosenBreaker));
-												break;
+				case verseToken:
+					songAnalysedTemp.add(verseToken);
+					break;
+				case lyricToken:
+					songAnalysedTemp.add(lyricToken);
+					break;
+				case repetitionStartToken:
+					songAnalysedTemp.add(repetitionStartToken);
+					break;
+				case repetitionEndToken :
+					songAnalysedTemp.add(repetitionEndToken);
+					break;
+				default:
+					songAnalysedTemp.addAll(stringBreak(element, patternSet,
+												delimitSet, chosenBreaker));
+					break;
 			}
 		}
 	} //end of processList
 
-	//A method that used regex to break a string.
 	/**
 	 * This method used regular expressions on a string passed on by
 	 * the method processList and examines it for tokenizing.
-	 * @param input		the string passed on by the method processList
-	 * @param patternSet	the defined pattern(regular expression) based
-	 * 	on which the tokenizing will be performed
-	 * @param delimitSet	the delimiter which will signify the string
-	 * 	split and the token if the pattern is found
-	 * @param chosenBreaker		the enum field defining where the string
-	 * 	has to be split(depending on the kind of tokenization process)
-	 * @return	results		a List<String> containing the tokens and
-	 * 	split strings that result from the tokenization
+	 * @param input		The string passed on by the method processList
+	 * @param patternSet	The defined pattern(regular expression) based
+	 * 	on which the tokenizing will be performed.
+	 * @param delimitSet	The delimiter which will signify the string
+	 * 	split and the token if the pattern is found.
+	 * @param chosenBreaker		The enum field defining where the string
+	 * 	has to be split(depending on the kind of tokenization process).
+	 * @return	results		A List<String> containing the tokens and
+	 * 	split strings that result from the tokenization.
 	 */
 	private static List<String> stringBreak(String input, String patternSet, 
 										String delimitSet, BreakType chosenBreaker) {
@@ -182,23 +189,30 @@ public class SongTokenizer implements Tokenizer {
 
 		if (m.find()) {
 			switch (chosenBreaker) {
-				case breakAfter:	for (String thing:input.split(patternSet)) {
+				case breakAfter:
+					for (String thing:input.split(patternSet)) {
 										results.add(delimitSet);
 										results.add(thing);
-									}
-									break;
-				case breakBefore:	results.add(delimitSet);
-									results.add(input.split(patternSet)[1]);
-									break;
-				default			:	for (String thing:input.split(patternSet)) {
-										results.add(delimitSet);
-										results.add(thing);
-									}
-									break;
+					}
+					break;
+				case breakBefore:
+					results.add(delimitSet);
+					results.add(input.split(patternSet)[1]);
+					break;
 			}
 		} else {
 			results.add(input);
 		}
 		return results;
 	} //end of stringBreaker
+	
+	/**
+	 * This returns the songAnalysed list
+	 * (mainly used for the testing).
+	 * @return	songAnalysed	The list containing
+	 * the tokenized song.
+	 */
+	public static List<String> getSongAnalysed() {
+		return songAnalysed;
+	}
 } //end of SongTokenizer

@@ -1,17 +1,30 @@
 package test;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.Ignore;
 import org.junit.Test;
+import java.io.File;
 
 import gr.aueb.cs.nlp.wordtagger.tokenizer.SongTokenizer;
 import junit.framework.Assert;
+import wordtagger.songs.SongHelper;
 
+/**
+ * The test class for the SongTokenizer class.
+ * For the purposes of the test, it was decided
+ * to use lyrics in the English language, to avoid
+ * any errors due to the encoding
+ * 
+ * @author Alexandros
+ * @since 6/2017
+ */
 public class SongTokenizerTest {
 	
 	
-	SongTokenizer song = new SongTokenizer();
 	
 	String songLyrics = "You can run on for a long time\n"
 							+ "Run on for a long time\n"
@@ -22,7 +35,7 @@ public class SongTokenizerTest {
 							+ "Tell the rambler, the gambler, the back biter\n"
 							+ "[Tell 'em that God's gonna cut 'em down]x2";
 	
-	List<String> songLyricsTokenized = new ArrayList<String>();
+	static List<String> songLyricsTokenized = new ArrayList<String>();
 	final static String verseRegex = "(\n\n)";
 	final static String verseToken = "|<new verse>|";
 	
@@ -37,9 +50,39 @@ public class SongTokenizerTest {
 	
 	final static String wordRegex = "(\\s{1,2})";
 	final static String wordToken = "|<word>|";
-							  
+		
 	@Test
+	/**
+	 * This method tests the main method. It actually just
+	 * verifies that whatever the main is doing is working
+	 * on a test level. 
+	 */
+	public void mainTest(){
+		String[] args = {};
+		SongTokenizer.main(args);
+		Assert.assertNotNull(SongTokenizer.getSongAnalysed());
+		
+	}
+	@Test
+	/**
+	 * This method tests the tokenize method. Through it,
+	 * the rest of the methods(which are private) can be tested
+	 * as well.
+	 */
 	public void tokenizeTest(){
+		songLyricsTokenized.clear();
+		songLyricsTokenizedSet();
+		List<String> songLyricsToTest = new ArrayList<String>();
+		SongTokenizer songTokenizerTest = new SongTokenizer();
+		songLyricsToTest = songTokenizerTest.tokenize(songLyrics);
+		Assert.assertEquals(songLyricsToTest, songLyricsTokenized);
+	} //end of tokenizeTest()
+
+	/**
+	 * This just fills the songLyricsTokenized with the 
+	 * values we should see after a tokenization process occurs
+	 */
+	public void songLyricsTokenizedSet(){
 		songLyricsTokenized.add(verseToken);
 		songLyricsTokenized.add(lyricToken);
 		songLyricsTokenized.add("You");
@@ -111,10 +154,5 @@ public class SongTokenizerTest {
 		songLyricsTokenized.add("cut");
 		songLyricsTokenized.add("em");
 		songLyricsTokenized.add("down");
-		
-		List<String> songLyricsToTest = new ArrayList<String>();
-		SongTokenizer songTokenizerTest = new SongTokenizer();
-		songLyricsToTest = songTokenizerTest.tokenize(songLyrics);
-		Assert.assertEquals(songLyricsToTest, songLyricsTokenized);
 	}
 }
