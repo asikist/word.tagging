@@ -21,6 +21,7 @@ public class SongTokenizerTest {
 							+ "Go and tell that midnight rider\n"
 							+ "Tell the rambler, the gambler, the back biter\n"
 							+ "[Tell 'em that God's gonna cut 'em down]x2";
+	
 	List<String> songLyricsTokenized = new ArrayList<String>();
 	final static String verseRegex = "(\n\n)";
 	final static String verseToken = "|<new verse>|";
