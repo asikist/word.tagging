@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 
-import wordtagger.songs.SongHelper;
+import gr.aueb.cs.nlp.wordtagger.songs.SongHelper;
 /**
  * A class containing methods that perform tokenizing on a song.
  * 

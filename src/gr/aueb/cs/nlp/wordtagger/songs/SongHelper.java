@@ -1,4 +1,4 @@
-package wordtagger.songs;
+package gr.aueb.cs.nlp.wordtagger.songs;
 
 import gr.aueb.cs.nlp.wordtagger.util.CallBack;
 import gr.aueb.cs.nlp.wordtagger.util.FileHelper;

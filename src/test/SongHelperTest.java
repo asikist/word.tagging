@@ -5,8 +5,8 @@ import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
+import gr.aueb.cs.nlp.wordtagger.songs.SongHelper;
 import junit.framework.Assert;
-import wordtagger.songs.SongHelper;
 
 /**
  * The test class for the SongHelper class.
