@@ -8,8 +8,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 
-import gr.aueb.cs.nlp.wordtagger.util.FileHelper;
-import gr.aueb.cs.nlp.wordtagger.util.CallBack;
+import wordtagger.songs.SongHelper;
 /**
  * A class containing methods that perform tokenizing on a song.
  * Methods are:
@@ -23,7 +22,7 @@ import gr.aueb.cs.nlp.wordtagger.util.CallBack;
  * @author Alexandros
  *
  */
-public class SongTokenizer {
+public class SongTokenizer implements Tokenizer{
 	
 	/*
 	 * Here we declare the variables regarding the tokenization by verse, lyric, repetition(start & end) and word.
@@ -56,9 +55,16 @@ public class SongTokenizer {
 	public static void main (String [] args){
 		
 		SongTokenizer sr = new SongTokenizer();
-		sr.tokenize();
+		//This is the path set for running it on my PC, obviously has to be set differently for someone else
+		String rawSongText = SongHelper.readSongFile(FileUtils.getUserDirectoryPath() 
+				+ File.separator +"Desktop" 
+				+ File.separator +"Workspace" 
+				+ File.separator +"Soft_Engine"
+				+ File.separator + "songTestGR");
+		sr.tokenize(rawSongText);
 		for (String s:songAnalysed)
 			System.out.println(s);
+		
 	}//end of main
 	
 	/**
@@ -66,16 +72,15 @@ public class SongTokenizer {
 	 * on the content of the song in order to perform a tokenization process to a song.
 	 * @return songAnalysed  a List<String> with each list element containing either a token or a word from the song
 	 */
-	public List<String> tokenize (){
+	public List<String> tokenize (String rawSongText) {
 
 		/*FIRST CLEANUP
 		* here we try to clean up our input from puncuation marks (,.!"') 
 		*/
-		String songUntoken = readSongFile(FileUtils.getUserDirectoryPath() + File.separator +"Desktop" + File.separator +"Workspace" +File.separator +"Soft_Engine"+ File.separator + "songTestGR");
-		songUntoken = songUntoken.replaceAll("[,.!\"]", "");
-		songUntoken = songUntoken.replaceAll("'", " "); //done separately because words may be linked by it
+		rawSongText = rawSongText.replaceAll("[,.!\"]", "");
+		rawSongText = rawSongText.replaceAll("'", " "); //done separately because words may be linked by it
 				
-		songAnalysed.add(songUntoken);
+		songAnalysed.add(rawSongText);
 		
 		//initial tokenization, separating the verses
 		splitSongTokens(verseRegex, verseToken, BreakType.breakAfter);
@@ -139,14 +144,6 @@ public class SongTokenizer {
 		}		
 	}//end of processList
 	
-	/**
-	 * 
-	 * This enum operator is used to signify how the string must be split(only the repetition start needs breakAfter
-	 */
-	private enum BreakType{
-		breakBefore, breakAfter;
-	}
-	
 	//A method that used regex to break a string.
 	/**
 	 * This method used regular expressions on a string passed on by the method processList and examines it for tokenizing.
@@ -185,18 +182,7 @@ public class SongTokenizer {
 	 * @param path	the path of the file to the user's selected directory
 	 * @return strb.toString()	a StringBuilder object which is turned into 
 	 */
-	private static String readSongFile(String path){		
-		StringBuilder strb = new StringBuilder();
-		
-		FileHelper.readFile(path, new CallBack<String>()  {
-			
-			@Override
-			public void call(String t) {
-				String line = t;
-				strb.append(line).append("\n");
-			}
-		});
-		
-		return strb.toString();
-	}//end of readSongFile
+
+	
+	
 }//end of SongTokenizer
