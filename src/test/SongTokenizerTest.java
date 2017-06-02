@@ -4,14 +4,11 @@ package test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.Ignore;
+
 import org.junit.Test;
-import java.io.File;
 
 import gr.aueb.cs.nlp.wordtagger.tokenizer.SongTokenizer;
 import junit.framework.Assert;
-import wordtagger.songs.SongHelper;
 
 /**
  * The test class for the SongTokenizer class.
