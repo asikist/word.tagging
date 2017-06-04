@@ -82,15 +82,11 @@ An addition to the word tagging project is a tokenizer implemented with song tok
    
    The tokens are:
    
-   |\<new verse\>|, which marks a new verse
-   
-   |\<new lyric\>|, which marks a new lyric
-   
-   |\<repetition start\>|, which marks the start of a repetition*
-   
-   |\<repetition end\>|, which marks the end of a repetition end*
-   
-   |\<word\>|, which marks a new word(in the context of song tokenization, this token is unnecessary and therfore discarted from the        List\<String\>)
+   - |\<new verse\>|, which marks a new verse
+   - |\<new lyric\>|, which marks a new lyric
+   - |\<repetition start\>|, which marks the start of a repetition*
+   - |\<repetition end\>|, which marks the end of a repetition end*
+   - |\<word\>|, which marks a new word(in the context of song tokenization, this token is unnecessary and therfore discarted from the        List\<String\>)
    
    *when the two tokens are placed one after another in the list, it means that only the following lyric is repeated.
 
