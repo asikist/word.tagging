@@ -32,8 +32,7 @@ An addition to the word tagging project is a tokenizer implemented with song tok
  1.   Create a new Class with a main
  2.   Create a new ExperiementSetup.Builder and build it after setting the appropriate variables for the experiement.
  3.   Use the Javadoc
- 4.   The tokenizer can be used by itself through the main method it includes or be used by another class through a SongTokenizer object. In the first case, just call it's main method(after setting the file path). In the second case, create a SongTokenizer object, read the file into a String with the SongHelper class and call the tokenize 
-      method(from the SongTokenizer class) with the aforementioned String as an input.
+ 4.   The tokenizer can be used by itself through the main method it includes or be used by another class. In the first case, just call       it's main method (after setting the file path). In the second case, create a SongTokenizer object, read the file into a String           with the SongHelper class and call the tokenize method (from the SongTokenizer class) with the aforementioned String as an input.
 
 ## System Inputs
  1.  All the possible Categories, provided in a file, separated with new line (\n). Example:  
