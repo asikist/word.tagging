@@ -26,7 +26,7 @@ An addition to the word tagging project is a tokenizer implemented with song tok
  4.   Have some test data in the CONLL format.
  5.   If you want to classify new data just use them in CONLL format
  6.   SVMs work only for Windows, If you need them for Unix either wrap Stanford’s SVMFactory Class like I did or maybe use another package.
- 7.   To use the tokenizer on a song, the song lyrics must be stored in a directory. The lyrics must agree with the common lyric format(each lyric in a line, empty line between verses, repetition marks the lyrics to be repeated etc.)
+ 7.   To use the tokenizer on a song, the song lyrics must be stored in a directory. The lyrics must agree with the common lyric format (each lyric in a line, empty line between verses, repetition marks the lyrics to be repeated etc.)
 
 ## How to use programmatically
  1.   Create a new Class with a main
@@ -86,7 +86,7 @@ An addition to the word tagging project is a tokenizer implemented with song tok
    - |\<new lyric\>|, which marks a new lyric
    - |\<repetition start\>|, which marks the start of a repetition*
    - |\<repetition end\>|, which marks the end of a repetition end*
-   - |\<word\>|, which marks a new word(in the context of song tokenization, this token is unnecessary and therfore discarted from the        List\<String\>)
+   - |\<word\>|, which marks a new word(in the context of song tokenization, this token is unnecessary and therefore discarded from the        List\<String\>)
    
    *when the two tokens are placed one after another in the list, it means that only the following lyric is repeated.
 
