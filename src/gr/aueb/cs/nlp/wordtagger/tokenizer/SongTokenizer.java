@@ -64,7 +64,6 @@ public class SongTokenizer implements Tokenizer {
 				+ File.separator + "Soft_Engine"
 				+ File.separator + "lyricsTest");
 		sr.tokenize(rawSongText);
-		int i = 0;
 		for (String s:songAnalysed) {
 			System.out.println(s);
 		}
@@ -79,7 +78,8 @@ public class SongTokenizer implements Tokenizer {
 	 * 	containing either a token or a word from the song.
 	 */
 	public List<String> tokenize(String rawSongText) {
-
+		songAnalysed.clear();
+		songAnalysedTemp.clear();
 		/*
 		 * FIRST CLEANUP
 		 * here we clean up our input from puncuation marks (,.!"')

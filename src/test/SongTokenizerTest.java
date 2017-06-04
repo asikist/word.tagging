@@ -33,6 +33,8 @@ public class SongTokenizerTest {
 							+ "[Tell 'em that God's gonna cut 'em down]x2";
 	
 	static List<String> songLyricsTokenized = new ArrayList<String>();
+	static List<String> songLyricsToTest = new ArrayList<String>();
+
 	final static String verseRegex = "(\n\n)";
 	final static String verseToken = "|<new verse>|";
 	
@@ -67,11 +69,10 @@ public class SongTokenizerTest {
 	 * as well.
 	 */
 	public void tokenizeTest(){
-		songLyricsTokenized.clear();
 		songLyricsTokenizedSet();
-		List<String> songLyricsToTest = new ArrayList<String>();
 		SongTokenizer songTokenizerTest = new SongTokenizer();
-		songLyricsToTest = songTokenizerTest.tokenize(songLyrics);
+		songLyricsToTest.clear();
+		songLyricsToTest.addAll(songTokenizerTest.tokenize(songLyrics));
 		Assert.assertEquals(songLyricsToTest, songLyricsTokenized);
 	} //end of tokenizeTest()
 
@@ -80,6 +81,7 @@ public class SongTokenizerTest {
 	 * values we should see after a tokenization process occurs
 	 */
 	public void songLyricsTokenizedSet(){
+		songLyricsTokenized.clear();
 		songLyricsTokenized.add(verseToken);
 		songLyricsTokenized.add(lyricToken);
 		songLyricsTokenized.add("You");
